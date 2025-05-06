@@ -32,8 +32,8 @@ services:
       - "--accessLog.format=json"
       - "--accessLog.fields.headers.names.X-Request-Id=keep"
     ports:
-      - "80:80"
-      - "443:443"
+      - "${OC_PROXY_HTTP_HOST_PORT:-80}:80"   # HTTP
+      - "${OC_PROXY_HTTPS_HOST_PORT:-443}:443" # HTTPS
     volumes:
       - "${DOCKER_SOCKET_PATH:-/var/run/docker.sock}:/var/run/docker.sock:ro"
       - "certs:/certs"
